@@ -75,6 +75,8 @@
 .Op Fl d Ar datastore
 .Op Fl t Ar template
 .Op Fl s Ar size
+.Op Fl C
+.Op Fl k Ar keyfile
 .Ar name
 .Nm
 .Cm
@@ -639,6 +641,18 @@ suffix should not be included.
 .It Fl s Ar size
 The size of disk image to create in bytes.
 Unless specified, the guest image will be a sparse file 20GB in size.
+.It Fl C
+Provide basic cloud-init configuration to the guest.
+If the guest supports it, this will set its hostname to the virtual machine
+name, add an entry to /etc/hosts, and resize the root partition to fill the
+backing device.
+You can also pass an SSH public key to the guest with the
+.Ar -k
+option.
+.It Fl k Ar keyfile
+With the
+.Ar -C
+option, inject an SSH public key into the guest using cloud-init.
 .El
 .It Cm destroy Ar name
 Removes the specified virtual machine from the system, deleting all associated
